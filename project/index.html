@@ -55,5 +55,39 @@
 
     // Logs all nodes inside the parent, including text nodes (spaces, line breaks)
     console.log("NODES: ", parent.childNodes);
+
+    // Create a new 'div' element and assign it to the variable 'div'
+    const div = document.createElement('div');
+
+    // Log the newly created 'div' element to the console for debugging purposes
+    console.log(div);
+
+    // Assign the class name 'main' to the 'div' element
+    div.className = "main";
+
+    // Generate a random integer between 1 and 41 (inclusive) and assign it as the ID of the 'div' element
+    div.id = Math.round(Math.random() * 40 + 1);
+
+    // Set the 'title' attribute of the 'div' element to the string "generate title"
+    div.setAttribute('title', "generate title");
+
+    // Apply inline CSS to set the background color of the 'div' element to green
+    div.style.backgroundColor = "green";
+
+    // Apply inline CSS to add 12 pixels of padding to the 'div' element
+    div.style.padding = "12px";
+
+    // (Commented Out) This line would set the inner HTML of the 'div' to "Chai aur code"
+    // div.innerHTML = "Chai aur code";
+
+    // Create a text node with the content "Chai aur code" and assign it to the variable 'addText'
+    const addText = document.createTextNode("Chai aur code");
+
+    // Append the text node 'addText' as a child of the 'div' element
+    div.appendChild(addText);
+
+    // Append the 'div' element (now with all its properties and content) to the body of the document
+    document.body.appendChild(div);
+
 </script>
 </html>
