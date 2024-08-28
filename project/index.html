@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document -->
+    <meta charset="UTF-8">
+    
+    <!-- Sets the X-UA-Compatible meta tag, which tells Internet Explorer to use the latest rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Sets the viewport to make the webpage responsive on different screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Defines the title of the webpage that will appear on the browser tab -->
+    <title>DOM | Chai aur code</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <!-- Main container holding multiple day elements -->
+    <div class="parent">
+        <!-- Individual day elements displayed inside the parent container -->
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+
+<script>
+    // Selects the element with the class "parent"
+    const parent = document.querySelector('.parent')
+
+    // Uncommenting the following lines would log various elements and content to the console for debugging:
+     console.log(parent); // Logs the entire parent element
+     console.log(parent.children); // Logs all child elements inside the parent
+     console.log(parent.children[1].innerHTML); // Logs the inner HTML of the second child (Tuesday)
+
+    // Loops through all child elements of the parent and logs their inner HTML content:
+     for (let i = 0; i < parent.children.length; i++) {
+          console.log(parent.children[i].innerHTML);  
+     }
+
+    // Changes the text color of the second child (Tuesday) to orange
+    parent.children[1].style.color = "orange"
+
+    // Logs the first and last child elements of the parent element:
+     console.log(parent.firstElementChild); // Logs the first child (Monday)
+     console.log(parent.lastElementChild); // Logs the last child (Thursday)
+
+    // Selects the first element with the class "day" (Monday)
+    const dayOne = document.querySelector('.day')
+
+    // Uncommenting the following lines would log various details about "dayOne" to the console:
+    console.log(dayOne); // Logs the first day element (Monday)
+    console.log(dayOne.parentElement); // Logs the parent element of "dayOne" (the div with class "parent")
+    console.log(dayOne.nextElementSibling); // Logs the next sibling of "dayOne" (Tuesday)
+
+    // Logs all nodes inside the parent, including text nodes (spaces, line breaks)
+    console.log("NODES: ", parent.childNodes);
+</script>
+</html>
