@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+
+    <script>
+      // URL of the API endpoint to request user data from GitHub
+      const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+  
+      // Create a new XMLHttpRequest object to handle the HTTP request
+      const xhr = new XMLHttpRequest();
+  
+      // Initialize a GET request to the specified URL
+      xhr.open('GET', requestUrl)
+  
+      // Set up a function to handle the state changes of the request
+      xhr.onreadystatechange = function(){
+          // Log the current state of the request (e.g., 0-4)
+          console.log(xhr.readyState);
+  
+          // If the request is complete (readyState === 4)
+          if (xhr.readyState === 4) {
+              // Parse the responseText (JSON string) into a JavaScript object
+              const data = JSON.parse(this.responseText);
+  
+              // Log the type of the parsed data (it should be an object)
+              console.log(typeof data);
+  
+              // Log the number of followers the user has
+              console.log(data.followers);
+          }
+      }
+  
+      // Send the HTTP request to the server
+      xhr.send();
+  </script>
+  
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+     // This line sets up a click event handler for the element with the ID 'owl'.
+// When this element is clicked, an alert box will appear with the message "owl clicked".
+document.getElementById('owl').onclick = function(){
+    alert("owl clicked");
+}
+
+// Old event attachment method for older versions of Internet Explorer:
+// attachEvent()
+
+// jQuery's method to attach event handlers:
+// jQuery - on
+
+/* Event object properties:
+    - type: The type of the event (e.g., 'click').
+    - timestamp: The time at which the event was created.
+    - defaultPrevented: Whether the event's default action was prevented.
+    - target: The element that triggered the event.
+    - toElement: The element that the pointer moved to (on mouse events).
+    - srcElement: The original element that triggered the event (similar to target).
+    - currentTarget: The element to which the event handler is attached.
+    - clientX, clientY: The X and Y coordinates of the event relative to the viewport.
+    - screenX, screenY: The X and Y coordinates of the event relative to the screen.
+    - altkey, ctrlkey, shiftkey: Boolean values indicating whether these keys were pressed.
+    - keyCode: The code of the key that was pressed (for keyboard events).
+*/
+document.getElementById('myButton').addEventListener('click', function(e) {
+    console.log(e.type);  // Outputs: "click"
+});
+
+document.getElementById('myButton').addEventListener('click', function(e) {
+    console.log(e.timeStamp);  // Outputs the timestamp (milliseconds since page load)
+});
+
+document.getElementById('myLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log(e.defaultPrevented);  // Outputs: true
+});
+
+document.getElementById('myDiv').addEventListener('click', function(e) {
+    console.log(e.target);  // Outputs the element that was clicked inside the div
+});
+
+document.getElementById('myDiv').addEventListener('mouseout', function(e) {
+    console.log(e.toElement);  // Outputs the element the mouse moved to
+});
+
+document.getElementById('myDiv').addEventListener('click', function(e) {
+    console.log(e.srcElement);  // Outputs the element that was clicked
+});
+
+document.getElementById('myDiv').addEventListener('click', function(e) {
+    console.log(e.currentTarget);  // Outputs the element with the listener (myDiv)
+});
+
+document.getElementById('myDiv').addEventListener('click', function(e) {
+    console.log(`X: ${e.clientX}, Y: ${e.clientY}`);  // Outputs the mouse coordinates relative to the viewport
+});
+
+document.getElementById('myDiv').addEventListener('click', function(e) {
+    console.log(`X: ${e.screenX}, Y: ${e.screenY}`);  // Outputs the mouse coordinates relative to the screen
+});
+
+document.getElementById('myDiv').addEventListener('click', function(e) {
+    console.log(`Shift: ${e.shiftKey}, Ctrl: ${e.ctrlKey}, Alt: ${e.altKey}`);  
+    // Outputs true or false depending on whether the keys were pressed
+});
+
+document.addEventListener('keydown', function(e) {
+    console.log(e.keyCode);  // Outputs the code of the pressed key
+});
+
+// This adds a click event listener to the element with the ID 'images'.
+// When clicked, it logs "clicked inside the ul" to the console.
+document.getElementById('images').addEventListener('click', function(e){
+    console.log("clicked inside the ul");
+}, false);
+
+// This adds a click event listener to the 'owl' element.
+// It logs "owl clicked" to the console and stops the event from propagating further.
+document.getElementById('owl').addEventListener('click', function(e){
+    console.log("owl clicked");
+    e.stopPropagation();  // Prevents the event from bubbling up to parent elements
+}, false);
+
+// This adds a click event listener to the 'google' element.
+// It prevents the default action (like following a link), stops event propagation, and logs "google clicked".
+document.getElementById('google').addEventListener('click', function(e){
+    e.preventDefault();   // Prevents the default action associated with the event
+    e.stopPropagation();  // Stops the event from propagating
+    console.log("google clicked");
+}, false);
+
+// This adds a click event listener to the 'images' element.
+// It checks if the clicked target is an 'IMG' tag, logs its ID, and removes the parent element of the image.
+document.querySelector('#images').addEventListener('click', function(e){
+    console.log(e.target.tagName);  // Logs the tag name of the clicked element
+    if (e.target.tagName === 'IMG') {
+        console.log(e.target.id);  // Logs the ID of the clicked image
+        let removeIt = e.target.parentNode;  // Gets the parent element of the image
+        removeIt.remove();  // Removes the parent element (and thus the image)
+    }
+});
+
+// An alternative way to remove the element:
+// removeIt.parentNode.removeChild(removeIt);
+
+// Function that logs "Hitesh" to the console
+const sayHitesh = function(){
+    console.log("Hitesh");
+};
+
+// Function that changes the innerHTML of an 'h1' element to "best JS series"
+const changeText = function(){
+    document.querySelector('h1').innerHTML = "best JS series";
+};
+
+// Sets a timeout to call the changeText function after 2 seconds (2000 milliseconds)
+const changeMe = setTimeout(changeText, 2000);
+
+// Adds a click event listener to the element with the ID 'stop'.
+// When clicked, it clears the timeout set by changeMe and logs "STOPPED".
+document.querySelector('#stop').addEventListener('click', function(){
+    clearTimeout(changeMe);  // Stops the scheduled changeText function
+    console.log("STOPPED");
+});
+
+// Function that logs a string and the current timestamp to the console
+const sayDate = function(str){
+    console.log(str, Date.now());
+};
+
+// Sets an interval to call the sayDate function every second (1000 milliseconds)
+// The string "hi" is passed as an argument to the sayDate function
+const intervalId = setInterval(sayDate, 1000, "hi");
+
+// Clears the interval, stopping the repeated execution of sayDate
+clearInterval(intervalId);
+
+
+
+</script>
+</html>
